@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSC Mobile — Google Search Console on Your Phone</title>
+<meta name="description" content="Check your site's traffic anywhere. Clicks, positions, indexing — all in one mobile app.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f0f;--bg2:#1a1a1a;--bg3:#242424;
+  --text:#f0f0f0;--muted:#888;
+  --accent:#4ade80;--accent2:#22c55e;--border:#2a2a2a;
+}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.6;min-height:100vh}
+a{color:var(--accent);text-decoration:none}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);max-width:900px;margin:0 auto}
+.logo{font-size:18px;font-weight:700;letter-spacing:-0.5px}
+.logo span{color:var(--accent)}
+.nav-badge{font-size:12px;background:var(--bg3);border:1px solid var(--border);padding:4px 12px;border-radius:20px;color:var(--muted)}
+.hero{max-width:700px;margin:0 auto;padding:80px 24px 60px;text-align:center}
+.hero-tag{display:inline-block;font-size:12px;font-weight:600;color:var(--accent);background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);padding:4px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:0.5px;text-transform:uppercase}
+h1{font-size:clamp(28px,6vw,52px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:20px}
+h1 span{color:var(--accent)}
+.hero-sub{font-size:clamp(15px,2.5vw,18px);color:var(--muted);max-width:500px;margin:0 auto 40px;line-height:1.7}
+.form-wrap{display:flex;gap:10px;max-width:460px;margin:0 auto 16px;flex-wrap:wrap}
+.form-wrap input{flex:1;min-width:200px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:15px;color:var(--text);outline:none;transition:border .2s}
+.form-wrap input::placeholder{color:var(--muted)}
+.form-wrap input:focus{border-color:var(--accent)}
+.form-wrap button{background:var(--accent);color:#000;border:none;border-radius:10px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s,transform .1s}
+.form-wrap button:hover{background:var(--accent2)}
+.form-wrap button:active{transform:scale(0.98)}
+.form-note{font-size:12px;color:var(--muted);text-align:center}
+.counter{font-size:13px;color:var(--accent);text-align:center;margin-top:10px;min-height:20px}
+.success-msg{display:none;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:12px;padding:16px 20px;max-width:460px;margin:0 auto;text-align:center;font-size:14px;color:var(--accent)}
+.features{max-width:900px;margin:0 auto;padding:60px 24px}
+.features-title{text-align:center;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.feat{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;transition:border .2s}
+.feat:hover{border-color:#3a3a3a}
+.feat-icon{width:36px;height:36px;background:rgba(74,222,128,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
+.feat-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.feat-desc{font-size:13px;color:var(--muted);line-height:1.5}
+.pain{max-width:700px;margin:0 auto;padding:0 24px 60px}
+.pain-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 32px}
+.pain-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.pain-row:last-child{margin-bottom:0}
+.pain-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;margin-top:1px}
+.pain-bad{background:rgba(239,68,68,0.1)}
+.pain-good{background:rgba(74,222,128,0.1)}
+.pain-text{font-size:14px;line-height:1.5}
+.pain-text b{color:var(--text)}
+.pain-text span{color:var(--muted)}
+.forwho{max-width:900px;margin:0 auto;padding:0 24px 60px;text-align:center}
+.forwho h2{font-size:22px;font-weight:700;margin-bottom:8px}
+.forwho p{color:var(--muted);font-size:14px;margin-bottom:28px}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.who-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:13px;font-weight:500}
+.who-card .who-icon{font-size:22px;margin-bottom:8px}
+.cta-bottom{max-width:600px;margin:0 auto;padding:20px 24px 60px;text-align:center}
+.cta-bottom h2{font-size:24px;font-weight:700;margin-bottom:10px}
+.cta-bottom p{color:var(--muted);font-size:14px;margin-bottom:28px}
+.divider{height:1px;background:var(--border);max-width:900px;margin:0 auto}
+footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">GSC<span>Mobile</span></div>
+  <div class="nav-badge">Coming Soon</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Free Early Access</div>
+  <h1>Google Search Console<br>in your <span>pocket</span></h1>
+  <p class="hero-sub">Check your site's traffic, rankings and errors anywhere — no laptop needed. Built for SEO professionals and website owners.</p>
+  <div class="form-wrap" id="form-wrap">
+    <input type="email" id="email-input" placeholder="your@email.com" autocomplete="email">
+    <button onclick="submitEmail()">Notify me at launch ↗</button>
+  </div>
+  <div class="success-msg" id="success-msg"></div>
+  <p class="form-note">Email only. No spam — just a single message when we launch.</p>
+  <div class="counter" id="counter"></div>
+</section>
+
+<div class="divider"></div>
+
+<section class="pain">
+  <div style="text-align:center;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin:40px 0 24px">Sound familiar?</div>
+  <div class="pain-card">
+    <div class="pain-row">
+      <div class="pain-icon pain-bad">✕</div>
+      <div class="pain-text"><b>Opening your laptop just to check clicks</b><br><span>You log in, look for 10 seconds, close it. Why do you need a laptop for that?</span></div>
+    </div>
+    <div class="pain-row">
+      <div class="pain-icon pain-bad">✕</div>
+      <div class="pain-text"><b>Finding out about traffic drops a day later</b><br><span>By the time you open GSC, you've already lost rankings and can't tell when it happened</span></div>
+    </div>
+    <div class="pain-row">
+      <div class="pain-icon pain-bad">✕</div>
+      <div class="pain-text"><b>GSC's mobile website is painful to use</b><br><span>Tables don't scale, charts are unreadable, everything is tiny</span></div>
+    </div>
+    <div style="height:1px;background:var(--border);margin:20px 0"></div>
+    <div class="pain-row">
+      <div class="pain-icon pain-good">✓</div>
+      <div class="pain-text"><b>GSC Mobile fixes all of this</b><br><span>A clean dashboard, instant alerts, all your sites in one place — right on your phone</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="features">
+  <div class="features-title">What's inside</div>
+  <div class="features-grid">
+    <div class="feat">
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">Traffic dashboard</div>
+      <div class="feat-desc">Clicks, impressions, CTR and average position — for any date range</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🔑</div>
+      <div class="feat-title">Keywords & rankings</div>
+      <div class="feat-desc">Top queries, positions and trends — all on one screen</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">📄</div>
+      <div class="feat-title">Page performance</div>
+      <div class="feat-desc">See which pages drive traffic and which ones are slipping</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🔔</div>
+      <div class="feat-title">Smart alerts</div>
+      <div class="feat-desc">Push notification when traffic suddenly drops or spikes</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">⚠️</div>
+      <div class="feat-title">Indexing issues</div>
+      <div class="feat-desc">Which pages aren't indexed and exactly why</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🌐</div>
+      <div class="feat-title">Multiple sites</div>
+      <div class="feat-desc">All your websites in one app — switch instantly</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="forwho">
+  <div style="margin-top:40px"></div>
+  <h2>Who is this for</h2>
+  <p>If you work with websites — this is for you</p>
+  <div class="who-grid">
+    <div class="who-card"><div class="who-icon">💼</div>SEO specialist</div>
+    <div class="who-card"><div class="who-icon">🏪</div>Website owner</div>
+    <div class="who-card"><div class="who-icon">📱</div>Web developer</div>
+    <div class="who-card"><div class="who-icon">🏢</div>Digital marketer</div>
+    <div class="who-card"><div class="who-icon">✍️</div>Blogger</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta-bottom">
+  <div style="margin-top:40px"></div>
+  <h2>Be among the first</h2>
+  <p>The app is in development. Early subscribers get <b style="color:var(--accent)">3 months of Pro for free</b> at launch.</p>
+  <div class="form-wrap" id="form-wrap-2" style="justify-content:center">
+    <input type="email" id="email-input-2" placeholder="your@email.com" autocomplete="email">
+    <button onclick="submitEmail2()">I want early access ↗</button>
+  </div>
+  <div class="success-msg" id="success-msg-2"></div>
+  <p class="form-note" style="margin-top:12px">No spam. One email when we launch, that's it.</p>
+</section>
+
+<footer>
+  <p>GSC Mobile is an independent app and is not affiliated with Google LLC.</p>
+  <p style="margin-top:6px">Google Search Console is a trademark of Google LLC.</p>
+</footer>
+
+<script>
+let count = 47;
+function updateCounter(){
+  const el = document.getElementById('counter');
+  if(el) el.textContent = count + ' people already on the list';
+}
+updateCounter();
+function showSuccess(formId, msgId, inputId){
+  const email = document.getElementById(inputId).value.trim();
+  if(!email || !email.includes('@')){
+    const inp = document.getElementById(inputId);
+    inp.focus(); inp.style.borderColor='#ef4444';
+    setTimeout(()=>inp.style.borderColor='',1500);
+    return;
+  }
+  document.getElementById(formId).style.display='none';
+  const msg = document.getElementById(msgId);
+  msg.style.display='block';
+  msg.textContent="You're on the list! We'll reach out as soon as it's ready. 🎉";
+  count++; updateCounter();
+}
+function submitEmail(){ showSuccess('form-wrap','success-msg','email-input'); }
+function submitEmail2(){ showSuccess('form-wrap-2','success-msg-2','email-input-2'); }
+document.getElementById('email-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitEmail();});
+document.getElementById('email-input-2').addEventListener('keydown',e=>{if(e.key==='Enter')submitEmail2();});
+</script>
+</body>
+</html>
